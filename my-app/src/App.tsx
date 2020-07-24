@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 // Imports for the other components.
@@ -10,24 +9,7 @@ import TextField from '@material-ui/core/TextField';
 
 function App() {
   return (
-<<<<<<< Updated upstream
     <div className="App">
-      <header className="App-header">
-        <img src="https://openmoji.org/data/color/svg/1F532.svg" className="App-logo" alt="logo" />
-        <p>
-          MSA2020
-        </p>
-        <a
-          className="App-link"
-          href="https://msa.azurewebsites.net/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          MSA website
-        </a>
-      </header>
-=======
-    <div>
       {/* Using Material UI to create the textfield for entering the movie ID.*/}
       <TextField
         id="outlined"
@@ -61,7 +43,7 @@ function App() {
         plot="Ever since the dawn of time, the Minions have lived to serve the most despicable of masters. From the T-Rex to Napoleon, the easily distracted tribe has helped the biggest and the baddest of villains. Now, join protective leader Kevin, teenage rebel Stuart, and lovable little Bob on a global road trip. They'll earn a shot to work for a new boss, the world's first female supervillain, and try to save all of Minionkind from annihilation."
         imdbRating="6.4"  
       />
->>>>>>> Stashed changes
+
     </div>
   );
 }

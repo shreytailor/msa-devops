@@ -15,7 +15,7 @@ function MovieView({posterURL, title, year, plot, runtime, director, imdbRating}
     return (
         <div className="container">
             {/* The props needed are Title, Year, Released, Runtime, Director, Plot, imdbRating */}
-            <img src={posterURL}></img>
+            <img src={posterURL} alt="movie_poster"></img>
             <h2 className="title">{title}<span className="year"> | Released in {year}</span></h2>
             <hr></hr>
             <p className="plot">{plot}</p>

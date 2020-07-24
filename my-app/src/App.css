@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 .App {
   text-align: center;
 }
@@ -36,3 +37,22 @@
     transform: rotate(360deg);
   }
 }
+=======
+* {
+    /*
+        Overriding the default settings for the placements of componennts
+        (which includes things such as margin and padding).
+    */
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    /*
+        Default font for everything, which the Material UI is designed
+        for originally.
+    */
+    font-family: Roboto;
+}
+>>>>>>> Stashed changes

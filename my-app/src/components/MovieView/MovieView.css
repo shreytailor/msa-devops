@@ -1,0 +1,65 @@
+.container {
+    /* Configuring the size of the bounding DIV container. */
+    margin: 20px 15px 20px 15px;
+    width: 650px;
+
+    /* Some basic text configuration. */
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+hr {
+    color: #ffffff;
+    margin:10px 0px 10px 0px;
+}
+
+img {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 30px;
+}
+
+.year {
+    font-size: 15px;
+    color: #1954c0;
+}
+
+.plot {
+    line-height: 22px;
+    color: #4d4d4d;
+    margin-bottom: 15px;
+}
+
+.property {
+    margin: 15px 0px 15px 0px;
+}
+
+.propertyName {
+ color: #4d4d4d;
+}
+
+.key {
+    color: #292929;
+    font-weight: 600;
+}
+
+/*
+    Responsive design for devices under 1000px of width.
+*/
+@media (max-width: 1000px) {
+    .container {
+        width: 500px;
+    }
+}
+
+/*
+    Responsive design for decices under 600px of width.
+*/
+@media (max-width: 600px) {
+    .container {
+        width: auto;
+    }
+}

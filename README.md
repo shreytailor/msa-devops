@@ -4,11 +4,12 @@
   - [Initial Deployment](#initial-deployment)
   - [Create A Build Pipeline](#create-a-build-pipeline)
   - [Create A Release Pipeline](#create-a-release-pipeline)
+  - [Assignment Explanation](#assignment-explanation)
 - [Web App (FE)](#web-app-fe)
   - [Basics Of A Component](#basics-of-a-component)
   - [Importing Components](#importing-components)
   - [Protecting Passwords & API Keys](#protecting-passwords--api-keys)
-  - [Assignment Explanation](#assignment-explanation)
+  - [Assignment Explanation](#assignment-explanation-1)
 <hr>
 
 # DevOps
@@ -92,6 +93,62 @@ Go back to "Pipeline" from the top-bar, and then click on the lightning symbol w
 ![](./images/6.png)
 
 Everything is now completed so you can go ahead and save this pipeline, as well as create a new manual release from the top-bar to test if everything is working nicely. To test it from the automation's perspective, if you go back to VS Code, change any code and commit those changes, the pipeline will automatically run and the published application would be a reflection of the updated code.
+
+## Assignment Explanation
+My assignment is hosted on the following link, https://shrey-devops.azurewebsites.net/. So from the beginning, I followed the text instructions on how to setup the build and release pipelines for an application. For the description of my pipeline, I am going to explain line-by-line what I have written in my `.yml` file.
+
+We are firstly defining the branches which can trigger our pipeline to execute itself. To fulfil the first requirement which was to create builds when pushing to the `master` or `develop`, we are creating two entries.
+```
+trigger:
+- master
+- develop
+```
+
+In the instructions, we were told to use variables whenever we know that some value is going to be used more than once. Hence, we are creating some here.
+```
+variables:
+  rootDir: 'my-app'
+  buildDir: '$(rootDir)/build'
+```
+
+We need `npm` in our pipeline and so here, we are just downloading and caching a particular version which we want for our application.
+```
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+```
+
+This is our regular script in order to build our React application that we have created.
+```
+- script: |
+    cd $(rootDir)
+    npm install
+    npm run build
+    cd ..
+  displayName: 'npm install and build'
+```
+
+Now we would have the build of our application, and here we are just trying to create an archive of it so that it can be deployed later on.
+```
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(buildDir)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+```
+
+After the archive has been generated, we are literally publishing it so that the Release Pipeline can take this and deploy it to the web.
+```
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+```
 <hr>
 
 # Web App (FE)

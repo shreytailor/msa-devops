@@ -151,7 +151,7 @@ After the archive has been generated, we are literally publishing it so that the
     publishLocation: 'Container'
 ```
 
-For the Release pipeline, I have added a filter so that the application is only released if the commit was made on the `master` branch and not `develop` or any other branch.
+For the Release pipeline, I have added a filter so that the application is only deployed if the commit was made on the `master` branch and not `develop` or any other branch.
 <hr>
 
 # Web App (FE)

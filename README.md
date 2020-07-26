@@ -98,7 +98,7 @@ Everything is now completed so you can go ahead and save this pipeline, as well 
 ## Assignment Explanation
 My assignment is hosted on the following link, https://shrey-devops.azurewebsites.net/. So from the beginning, I followed the text instructions on how to setup the build and release pipelines for an application. For the description of my pipeline, I am going to explain line-by-line what I have written in my `.yml` file.
 
-We are firstly defining the branches which can trigger our pipeline to execute itself. To fulfil the first requirement which was to create builds when pushing to the `master` or `develop`, we are creating two entries for the trigger.
+We are firstly defining the branches which can trigger our pipeline to execute itself. To fulfil the first requirement which was to create builds when pushing to the `master` or `develop`, we are creating two entries for the trigger. This makes sure that we are creating releases when pushing to any of these branches.
 ```
 trigger:
 - master
@@ -112,7 +112,7 @@ variables:
   buildDir: '$(rootDir)/build'
 ```
 
-We need `npm` in our pipeline and so here, we are just downloading and caching a particular version which we want for our application.
+We need `npm` in our pipeline and so here, we are just downloading and caching a particular version of Node which we want for our application.
 ```
 steps:
 - task: NodeTool@0
@@ -131,7 +131,7 @@ This is our regular script in order to build our React application that we have 
   displayName: 'npm install and build'
 ```
 
-Now we would have the build of our application, and here we are just trying to create an archive of it so that it can be deployed later on.
+Now we would have the build of our React application, and here we are just trying to create an archive of it so that it can be deployed later on.
 ```
 - task: ArchiveFiles@2
   inputs:
@@ -142,7 +142,7 @@ Now we would have the build of our application, and here we are just trying to c
     replaceExistingArchive: true
 ```
 
-After the archive has been generated, we are literally publishing it so that the Release Pipeline can take this and deploy it to the web.
+After the archive has been generated, we are literally publishing it so that the Release pipeline can take this and deploy it to the web.
 ```
 - task: PublishBuildArtifacts@1
   inputs:
@@ -151,7 +151,7 @@ After the archive has been generated, we are literally publishing it so that the
     publishLocation: 'Container'
 ```
 
-For the Release Pipeline, I have added a filter so that the application is only released if the commit was made on the `master` branch and not `develop` or any other branch.
+For the Release pipeline, I have added a filter so that the application is only released if the commit was made on the `master` branch and not `develop` or any other branch.
 <hr>
 
 # Web App (FE)
@@ -205,4 +205,4 @@ My assignment is hosted on the following link, https://shrey-devops.azurewebsite
 
 The Search Bar at the very top is a component that belongs to the Material UI framework. All other components are created using just HTML and CSS which. Everything is made responsive so that the mobile users have a seamless experience.
 
-There is also some other very basic error-handling regarding the API failure, incorrect IMDb ID input etc.
+There is also some other very basic error-handling regarding the API failure, incorrect IMDb ID input etc. that is implemented.
